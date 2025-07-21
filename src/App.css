@@ -1,3 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "swiper/css";
+@import "aos/dist/aos.css";
+
+
+
+
 .App {
   text-align: center;
 }
