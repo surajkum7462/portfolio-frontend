@@ -282,6 +282,135 @@ const SkillsConstellation = () => {
   );
 };
 
+// Advanced Particle System
+const ParticleSystem = () => {
+  const pointsRef = useRef();
+  const particleCount = 2000;
+
+  const particles = React.useMemo(() => {
+    const positions = new Float32Array(particleCount * 3);
+    const colors = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 100;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 100;
+
+      const color = new THREE.Color();
+      color.setHSL(Math.random() * 0.3 + 0.7, 0.8, 0.6);
+      colors[i * 3] = color.r;
+      colors[i * 3 + 1] = color.g;
+      colors[i * 3 + 2] = color.b;
+    }
+
+    return { positions, colors };
+  }, []);
+
+  useFrame((state) => {
+    if (pointsRef.current) {
+      pointsRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.2;
+      pointsRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.05) * 0.1;
+    }
+  });
+
+  return (
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={particleCount}
+          array={particles.positions}
+          itemSize={3}
+        />
+        <bufferAttribute
+          attach="attributes-color"
+          count={particleCount}
+          array={particles.colors}
+          itemSize={3}
+        />
+      </bufferGeometry>
+      <pointsMaterial
+        size={0.1}
+        vertexColors
+        transparent
+        opacity={0.8}
+        sizeAttenuation
+      />
+    </points>
+  );
+};
+
+// Dynamic Connection Lines
+const ConnectionNetwork = () => {
+  const linesRef = useRef();
+
+  useFrame((state) => {
+    if (linesRef.current) {
+      linesRef.current.material.opacity = 0.3 + Math.sin(state.clock.elapsedTime) * 0.2;
+    }
+  });
+
+  const connections = React.useMemo(() => {
+    const lines = [];
+    const centerPosition = [0, 0, 0];
+
+    // Connect all projects to center
+    projects.forEach(project => {
+      lines.push({
+        start: centerPosition,
+        end: project.position,
+        color: project.color
+      });
+    });
+
+    // Connect projects to each other
+    for (let i = 0; i < projects.length; i++) {
+      for (let j = i + 1; j < projects.length; j++) {
+        lines.push({
+          start: projects[i].position,
+          end: projects[j].position,
+          color: "#8B5CF6"
+        });
+      }
+    }
+
+    return lines;
+  }, []);
+
+  return (
+    <group ref={linesRef}>
+      {connections.map((connection, index) => {
+        const start = new THREE.Vector3(...connection.start);
+        const end = new THREE.Vector3(...connection.end);
+        const distance = start.distanceTo(end);
+        const midpoint = start.clone().lerp(end, 0.5);
+        const direction = end.clone().sub(start);
+        const quaternion = new THREE.Quaternion().setFromUnitVectors(
+          new THREE.Vector3(0, 1, 0),
+          direction.normalize()
+        );
+
+        return (
+          <Cylinder
+            key={index}
+            args={[0.01, 0.01, distance]}
+            position={midpoint.toArray()}
+            quaternion={quaternion.toArray()}
+          >
+            <meshStandardMaterial
+              color={connection.color}
+              transparent
+              opacity={0.4}
+              emissive={connection.color}
+              emissiveIntensity={0.1}
+            />
+          </Cylinder>
+        );
+      })}
+    </group>
+  );
+};
+
 // Calculate connections between projects
 const calculateConnections = (project, allProjects) => {
   return allProjects
@@ -293,7 +422,7 @@ const calculateConnections = (project, allProjects) => {
       const distance = start.distanceTo(end);
       const direction = end.clone().sub(start).normalize();
       const rotation = new THREE.Euler(0, 0, Math.atan2(direction.y, direction.x));
-      
+
       return { midpoint: midpoint.toArray(), distance, rotation: [rotation.x, rotation.y, rotation.z] };
     });
 };
