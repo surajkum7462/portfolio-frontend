@@ -621,20 +621,64 @@ const Portfolio3DUniverse = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-black via-purple-900 to-black flex items-center justify-center">
         <motion.div
           className="text-white text-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
         >
           <motion.div
-            className="text-6xl mb-4"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="text-8xl mb-6"
+            animate={{
+              rotate: 360,
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              rotate: { duration: 3, repeat: Infinity, ease: "linear" },
+              scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+            }}
           >
-            🚀
+            🌌
           </motion.div>
-          <h1 className="text-2xl font-bold">Initializing 3D Universe...</h1>
+          <motion.h1
+            className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            Suraj Kumar's Universe
+          </motion.h1>
+          <motion.p
+            className="text-xl text-white/80"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 }}
+          >
+            Initializing 3D Portfolio Experience...
+          </motion.p>
+
+          <motion.div
+            className="mt-8 flex justify-center space-x-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+          >
+            {[...Array(3)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="w-3 h-3 bg-purple-500 rounded-full"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  delay: i * 0.2
+                }}
+              />
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     );
