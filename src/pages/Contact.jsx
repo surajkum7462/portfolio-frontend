@@ -136,7 +136,7 @@ const Contact = () => {
                 : "bg-gradient-to-r from-pink-400 to-yellow-500 hover:from-pink-300 hover:to-yellow-400"
             }`}
           >
-            {isSubmitting ? "⏳ Please wait..." : "✉️ Send Message"}
+{isSubmitting ? "Please wait..." : "Send Message"}
           </button>
 
           {showInlineToast === "success" && (
