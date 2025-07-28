@@ -89,18 +89,20 @@ const getSkillIcon = (skillName) => {
   };
 };
 
-// Main Skill Icon 3D Component
+// Main Skill Icon Component with Exact Brand Icons
 const SkillIcon3D = ({ skill, index }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const skillData = getSkillIcon(skill.name);
+  const IconComponent = skillData.icon;
 
   return (
     <motion.div
-      className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300 group"
+      className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300 group relative overflow-hidden"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      whileHover={{ 
-        scale: 1.05, 
+      whileHover={{
+        scale: 1.05,
         backgroundColor: "rgba(255,255,255,0.1)",
         boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)"
       }}
@@ -108,31 +110,117 @@ const SkillIcon3D = ({ skill, index }) => {
       onHoverEnd={() => setIsHovered(false)}
       viewport={{ once: true }}
     >
-      {/* 3D Icon */}
-      <div className="h-24 mb-4">
-        <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
-          <ambientLight intensity={0.4} />
-          <pointLight position={[2, 2, 2]} intensity={1} />
-          <pointLight position={[-2, -2, -2]} intensity={0.5} color="#8B5CF6" />
-          
-          {getSkillIcon(skill.name, isHovered)}
-        </Canvas>
+      {/* Background Gradient on Hover */}
+      <motion.div
+        className={`absolute inset-0 bg-gradient-to-br ${skillData.bgGradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`}
+        animate={{
+          opacity: isHovered ? 0.1 : 0,
+        }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* Exact Brand Icon */}
+      <div className="h-24 mb-4 flex items-center justify-center relative z-10">
+        <motion.div
+          className="relative"
+          whileHover={{
+            scale: 1.2,
+            rotate: [0, -5, 5, 0]
+          }}
+          transition={{
+            duration: 0.3,
+            rotate: { duration: 0.6, ease: "easeInOut" }
+          }}
+        >
+          <IconComponent
+            className="text-6xl transition-all duration-300"
+            style={{
+              color: isHovered ? '#ffffff' : skillData.color,
+              filter: isHovered ? 'drop-shadow(0 0 20px rgba(255,255,255,0.5))' : `drop-shadow(0 0 10px ${skillData.color}40)`
+            }}
+          />
+
+          {/* Floating particles around icon */}
+          {isHovered && (
+            <div className="absolute inset-0 pointer-events-none">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 rounded-full"
+                  style={{
+                    backgroundColor: skillData.color,
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    y: [-10, -30, -10],
+                    opacity: [0, 1, 0],
+                    scale: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.2,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </div>
+          )}
+        </motion.div>
       </div>
 
       {/* Skill Info */}
-      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
-        {skill.name}
-      </h3>
-      <p className="text-purple-300 text-sm mb-2">{skill.category}</p>
-      <div className="flex items-center">
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-          skill.level === 'Expert' ? 'bg-green-600/80 text-white' :
-          skill.level === 'Advanced' ? 'bg-blue-600/80 text-white' :
-          'bg-yellow-600/80 text-white'
-        }`}>
-          {skill.level}
-        </span>
+      <div className="relative z-10">
+        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
+          {skill.name}
+        </h3>
+        <p className="text-purple-300 text-sm mb-3">{skill.category}</p>
+        <div className="flex items-center justify-between">
+          <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+            skill.level === 'Expert' ? 'bg-green-600/80 text-white' :
+            skill.level === 'Advanced' ? 'bg-blue-600/80 text-white' :
+            'bg-yellow-600/80 text-white'
+          }`}>
+            {skill.level}
+          </span>
+
+          {/* Skill Progress Indicator */}
+          <div className="flex space-x-1">
+            {[...Array(5)].map((_, i) => (
+              <motion.div
+                key={i}
+                className={`w-2 h-2 rounded-full ${
+                  i < (skill.level === 'Expert' ? 5 : skill.level === 'Advanced' ? 4 : 3)
+                    ? 'bg-white/80'
+                    : 'bg-white/20'
+                }`}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.6 + i * 0.1 }}
+                whileHover={{ scale: 1.2 }}
+              />
+            ))}
+          </div>
+        </div>
       </div>
+
+      {/* Glow Effect */}
+      <motion.div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10"
+        style={{
+          background: `radial-gradient(circle, ${skillData.color} 0%, transparent 70%)`,
+          filter: 'blur(20px)'
+        }}
+        animate={{
+          scale: isHovered ? [1, 1.1, 1] : 1,
+        }}
+        transition={{
+          duration: 2,
+          repeat: isHovered ? Infinity : 0,
+          ease: "easeInOut"
+        }}
+      />
     </motion.div>
   );
 };
