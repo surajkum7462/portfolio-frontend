@@ -281,16 +281,16 @@ const SkillsConstellation = () => {
 // Advanced Particle System
 const ParticleSystem = () => {
   const pointsRef = useRef();
-  const particleCount = 2000;
+  const particleCount = 1500; // Reduced for better performance
 
   const particles = React.useMemo(() => {
     const positions = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
     for (let i = 0; i < particleCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 100;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 100;
+      positions[i * 3] = (Math.random() - 0.5) * 80;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 80;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
 
       const color = new THREE.Color();
       color.setHSL(Math.random() * 0.3 + 0.7, 0.8, 0.6);
@@ -303,9 +303,13 @@ const ParticleSystem = () => {
   }, []);
 
   useFrame((state) => {
-    if (pointsRef.current) {
-      pointsRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.2;
-      pointsRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.05) * 0.1;
+    try {
+      if (pointsRef.current) {
+        pointsRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.2;
+        pointsRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.05) * 0.1;
+      }
+    } catch (error) {
+      console.warn('ParticleSystem animation error:', error);
     }
   });
 
