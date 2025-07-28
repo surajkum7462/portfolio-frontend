@@ -221,12 +221,13 @@ const AboutPremium = () => {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-center mb-12 text-white">Educational Timeline</h2>
-          
-          <div className="relative">
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-12 text-white px-4">Educational Timeline</h2>
+
+          {/* Desktop Timeline */}
+          <div className="relative hidden lg:block">
             {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full"></div>
-            
+
             {timeline.map((item, index) => (
               <motion.div
                 key={index}
@@ -249,7 +250,7 @@ const AboutPremium = () => {
                     </span>
                   </motion.div>
                 </div>
-                
+
                 {/* Timeline Dot */}
                 <div className="relative flex items-center justify-center w-2/12">
                   <motion.div
@@ -257,8 +258,46 @@ const AboutPremium = () => {
                     whileHover={{ scale: 1.3 }}
                   />
                 </div>
-                
+
                 <div className="w-5/12"></div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile Timeline */}
+          <div className="lg:hidden relative px-4">
+            {/* Mobile Timeline Line */}
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-600 to-pink-600 rounded-full"></div>
+
+            {timeline.map((item, index) => (
+              <motion.div
+                key={index}
+                className="relative flex items-start mb-8 last:mb-0"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                {/* Mobile Timeline Dot */}
+                <motion.div
+                  className="absolute left-6 w-4 h-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full border-2 border-white/20 shadow-lg flex-shrink-0 mt-2"
+                  whileHover={{ scale: 1.2 }}
+                />
+
+                {/* Mobile Content */}
+                <div className="ml-16">
+                  <motion.div
+                    className="bg-white/10 backdrop-blur-lg rounded-xl p-4 sm:p-6 border border-white/20"
+                    whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.15)" }}
+                  >
+                    <h3 className="text-lg sm:text-xl font-bold text-purple-300 mb-2">{item.title}</h3>
+                    <p className="text-yellow-300 font-semibold mb-3 text-sm sm:text-base">{item.year}</p>
+                    <p className="text-white/90 leading-relaxed mb-3 text-sm sm:text-base">{item.description}</p>
+                    <span className="inline-block px-2 py-1 bg-gradient-to-r from-purple-600/80 to-pink-600/80 rounded-full text-xs sm:text-sm text-white">
+                      {item.achievement}
+                    </span>
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </div>
