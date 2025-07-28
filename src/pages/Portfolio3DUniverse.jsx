@@ -10,7 +10,6 @@ import {
   Cylinder,
   Torus,
   Html,
-  Environment,
   ContactShadows
 } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
