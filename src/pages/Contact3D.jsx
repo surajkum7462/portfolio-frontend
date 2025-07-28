@@ -148,13 +148,59 @@ const Contact3D = () => {
     <div className="relative min-h-screen overflow-hidden">
       {/* 3D Background */}
       <ContactBackground3D />
-      
+
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-purple-900/40 to-black/80 z-10" />
 
-      {/* Interactive Cursor */}
+      {/* Responsive Navigation */}
+      <motion.nav
+        className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-xl border-b border-white/10"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16">
+            <Link
+              to="/"
+              className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400"
+            >
+              SK
+            </Link>
+
+            <div className="hidden sm:flex items-center space-x-6">
+              <Link to="/" className="text-white/80 hover:text-white transition-colors">
+                Home
+              </Link>
+              <Link to="/about" className="text-white/80 hover:text-white transition-colors">
+                About
+              </Link>
+              <Link to="/projects" className="text-white/80 hover:text-white transition-colors">
+                Projects
+              </Link>
+              <Link to="/blog" className="text-white/80 hover:text-white transition-colors">
+                Blog
+              </Link>
+              <Link to="/contact" className="text-white font-semibold">
+                Contact
+              </Link>
+              <Link to="/socials" className="text-white/80 hover:text-white transition-colors">
+                Social
+              </Link>
+            </div>
+
+            <button className="sm:hidden text-white">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Interactive Cursor - Hidden on mobile */}
       <motion.div
-        className="fixed w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full pointer-events-none z-50 mix-blend-screen"
+        className="fixed w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full pointer-events-none z-50 mix-blend-screen hidden lg:block"
         animate={{
           x: mousePosition.x * 30,
           y: mousePosition.y * 30
