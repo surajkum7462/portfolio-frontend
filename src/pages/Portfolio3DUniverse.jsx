@@ -145,12 +145,21 @@ const ProjectNode = ({ project, onClick, isSelected, connections }) => {
 // Central Hub (Suraj's Avatar)
 const CentralHub = ({ onClick }) => {
   const meshRef = useRef();
+  const coreRef = useRef();
   const [hovered, setHovered] = useState(false);
-  
+
   useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.02;
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.3;
+    try {
+      if (meshRef.current) {
+        meshRef.current.rotation.y += 0.02;
+        meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.3;
+      }
+      if (coreRef.current) {
+        coreRef.current.rotation.x += 0.01;
+        coreRef.current.rotation.z += 0.005;
+      }
+    } catch (error) {
+      console.warn('CentralHub animation error:', error);
     }
   });
 
