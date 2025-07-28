@@ -72,17 +72,19 @@ const education = [
 // 3D Project Node Component
 const ProjectNode = ({ project, onClick, isSelected, connections }) => {
   const meshRef = useRef();
+  const groupRef = useRef();
   const [hovered, setHovered] = useState(false);
-  
+
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.01;
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime + project.id) * 0.1;
-      
-      if (hovered || isSelected) {
-        meshRef.current.scale.lerp(new THREE.Vector3(1.3, 1.3, 1.3), 0.1);
-      } else {
-        meshRef.current.scale.lerp(new THREE.Vector3(1, 1, 1), 0.1);
+      try {
+        meshRef.current.rotation.y += 0.01;
+        meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime + project.id) * 0.1;
+
+        const targetScale = (hovered || isSelected) ? 1.3 : 1;
+        meshRef.current.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.1);
+      } catch (error) {
+        console.warn('ProjectNode animation error:', error);
       }
     }
   });
