@@ -22,11 +22,14 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setShowInlineToast(null);
+
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/contact",
-        formData
-      );
+      // Simulate form submission since backend is not available
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Log form data for demonstration (in real app, this would be sent to backend)
+      console.log("Contact form submission:", formData);
+
       setFormData({ name: "", email: "", message: "" });
       setShowInlineToast("success");
     } catch (error) {
