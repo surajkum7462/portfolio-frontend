@@ -74,7 +74,7 @@ const Contact = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Let's Connect 🤝
+Let's Connect
       </motion.h2>
 
       <motion.form
