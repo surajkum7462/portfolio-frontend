@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Sphere, Box, Torus, Stars, OrbitControls, Text3D } from "@react-three/drei";
+import SkillIcon3D from "../components/SkillIcon3D";
 import * as THREE from "three";
 
 const FloatingShape3D = ({ position, color, size, type }) => {
