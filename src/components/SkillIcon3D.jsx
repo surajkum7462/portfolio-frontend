@@ -16,223 +16,77 @@ import {
 } from 'react-icons/si';
 import { FaCode } from 'react-icons/fa';
 
-// 3D Icon Components for different technologies
-const HTMLIcon = ({ isHovered }) => {
-  const meshRef = useRef();
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.02;
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime) * 0.1;
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.3} floatIntensity={0.5}>
-      <group ref={meshRef}>
-        {/* HTML5 Shield Shape */}
-        <Box args={[1, 1.2, 0.2]} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            color={isHovered ? "#ffffff" : "#E34F26"}
-            emissive="#E34F26"
-            emissiveIntensity={isHovered ? 0.4 : 0.2}
-          />
-        </Box>
-        <Box args={[0.8, 0.3, 0.3]} position={[0, 0.3, 0]}>
-          <meshStandardMaterial
-            color="#ffffff"
-            emissive="#ffffff"
-            emissiveIntensity={0.3}
-          />
-        </Box>
-      </group>
-    </Float>
-  );
-};
-
-const ReactIcon = ({ isHovered }) => {
-  const meshRef = useRef();
-  const orbitRef1 = useRef();
-  const orbitRef2 = useRef();
-  const orbitRef3 = useRef();
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.01;
-    }
-    if (orbitRef1.current) orbitRef1.current.rotation.z += 0.02;
-    if (orbitRef2.current) orbitRef2.current.rotation.x += 0.015;
-    if (orbitRef3.current) orbitRef3.current.rotation.y += 0.025;
-  });
-
-  return (
-    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.4}>
-      <group ref={meshRef}>
-        {/* React Atom Core */}
-        <Sphere args={[0.2]} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            color={isHovered ? "#ffffff" : "#61DAFB"}
-            emissive="#61DAFB"
-            emissiveIntensity={isHovered ? 0.6 : 0.3}
-          />
-        </Sphere>
-        
-        {/* Electron Orbits */}
-        <group ref={orbitRef1}>
-          <Torus args={[0.8, 0.02, 8, 32]} rotation={[0, 0, 0]}>
-            <meshStandardMaterial color="#61DAFB" emissive="#61DAFB" emissiveIntensity={0.2} />
-          </Torus>
-        </group>
-        <group ref={orbitRef2}>
-          <Torus args={[0.8, 0.02, 8, 32]} rotation={[Math.PI / 3, 0, 0]}>
-            <meshStandardMaterial color="#61DAFB" emissive="#61DAFB" emissiveIntensity={0.2} />
-          </Torus>
-        </group>
-        <group ref={orbitRef3}>
-          <Torus args={[0.8, 0.02, 8, 32]} rotation={[-Math.PI / 3, 0, 0]}>
-            <meshStandardMaterial color="#61DAFB" emissive="#61DAFB" emissiveIntensity={0.2} />
-          </Torus>
-        </group>
-      </group>
-    </Float>
-  );
-};
-
-const JavaScriptIcon = ({ isHovered }) => {
-  const meshRef = useRef();
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.02;
-      meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 2) * 0.1;
-    }
-  });
-
-  return (
-    <Float speed={2.5} rotationIntensity={0.4} floatIntensity={0.6}>
-      <group ref={meshRef}>
-        {/* JS Rounded Rectangle */}
-        <Box args={[1, 1, 0.2]} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            color={isHovered ? "#ffffff" : "#F7DF1E"}
-            emissive="#F7DF1E"
-            emissiveIntensity={isHovered ? 0.4 : 0.2}
-          />
-        </Box>
-        {/* JS Text representation */}
-        <Sphere args={[0.15]} position={[-0.2, 0.1, 0.15]}>
-          <meshStandardMaterial color="#000000" />
-        </Sphere>
-        <Sphere args={[0.15]} position={[0.2, -0.1, 0.15]}>
-          <meshStandardMaterial color="#000000" />
-        </Sphere>
-      </group>
-    </Float>
-  );
-};
-
-const JavaIcon = ({ isHovered }) => {
-  const meshRef = useRef();
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x += 0.01;
-      meshRef.current.rotation.y += 0.015;
-    }
-  });
-
-  return (
-    <Float speed={1.8} rotationIntensity={0.3} floatIntensity={0.5}>
-      <group ref={meshRef}>
-        {/* Java Coffee Cup */}
-        <Cylinder args={[0.4, 0.5, 0.8, 16]} position={[0, -0.2, 0]}>
-          <meshStandardMaterial
-            color={isHovered ? "#ffffff" : "#007396"}
-            emissive="#007396"
-            emissiveIntensity={isHovered ? 0.4 : 0.2}
-          />
-        </Cylinder>
-        {/* Steam */}
-        <Sphere args={[0.05]} position={[-0.1, 0.5, 0]}>
-          <meshStandardMaterial color="#ffffff" transparent opacity={0.6} />
-        </Sphere>
-        <Sphere args={[0.05]} position={[0.1, 0.6, 0]}>
-          <meshStandardMaterial color="#ffffff" transparent opacity={0.4} />
-        </Sphere>
-      </group>
-    </Float>
-  );
-};
-
-const SpringBootIcon = ({ isHovered }) => {
-  const meshRef = useRef();
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.z += 0.02;
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.3} floatIntensity={0.4}>
-      <group ref={meshRef}>
-        {/* Spring Coil */}
-        <Torus args={[0.6, 0.1, 8, 32]} position={[0, 0, 0]}>
-          <meshStandardMaterial
-            color={isHovered ? "#ffffff" : "#6DB33F"}
-            emissive="#6DB33F"
-            emissiveIntensity={isHovered ? 0.4 : 0.2}
-          />
-        </Torus>
-        <Cylinder args={[0.05, 0.05, 1]} position={[0, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
-          <meshStandardMaterial color="#6DB33F" emissive="#6DB33F" emissiveIntensity={0.3} />
-        </Cylinder>
-      </group>
-    </Float>
-  );
-};
-
-const DefaultIcon = ({ isHovered, color = "#8B5CF6" }) => {
-  const meshRef = useRef();
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x += 0.01;
-      meshRef.current.rotation.y += 0.02;
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.4} floatIntensity={0.5}>
-      <Box ref={meshRef} args={[0.8, 0.8, 0.8]}>
-        <meshStandardMaterial
-          color={isHovered ? "#ffffff" : color}
-          emissive={color}
-          emissiveIntensity={isHovered ? 0.4 : 0.2}
-        />
-      </Box>
-    </Float>
-  );
-};
-
-// Skill Icon Component Mapper
-const getSkillIcon = (skillName, isHovered) => {
+// Exact Technology Icons Mapping
+const getSkillIcon = (skillName) => {
   const name = skillName.toLowerCase();
-  
-  if (name.includes('html')) return <HTMLIcon isHovered={isHovered} />;
-  if (name.includes('react')) return <ReactIcon isHovered={isHovered} />;
-  if (name.includes('javascript')) return <JavaScriptIcon isHovered={isHovered} />;
-  if (name.includes('java') && !name.includes('script')) return <JavaIcon isHovered={isHovered} />;
-  if (name.includes('spring')) return <SpringBootIcon isHovered={isHovered} />;
-  if (name.includes('css')) return <DefaultIcon isHovered={isHovered} color="#1572B6" />;
-  if (name.includes('three')) return <DefaultIcon isHovered={isHovered} color="#000000" />;
-  if (name.includes('mysql')) return <DefaultIcon isHovered={isHovered} color="#4479A1" />;
-  if (name.includes('git')) return <DefaultIcon isHovered={isHovered} color="#F05032" />;
-  if (name.includes('docker')) return <DefaultIcon isHovered={isHovered} color="#0db7ed" />;
-  if (name.includes('maven')) return <DefaultIcon isHovered={isHovered} color="#C71A36" />;
-  if (name.includes('junit')) return <DefaultIcon isHovered={isHovered} color="#25A162" />;
-  
-  return <DefaultIcon isHovered={isHovered} />;
+
+  if (name.includes('html')) return {
+    icon: SiHtml5,
+    color: "#E34F26",
+    bgGradient: "from-orange-500 to-red-500"
+  };
+  if (name.includes('css')) return {
+    icon: SiCss3,
+    color: "#1572B6",
+    bgGradient: "from-blue-500 to-blue-600"
+  };
+  if (name.includes('javascript')) return {
+    icon: SiJavascript,
+    color: "#F7DF1E",
+    bgGradient: "from-yellow-400 to-yellow-500"
+  };
+  if (name.includes('react')) return {
+    icon: SiReact,
+    color: "#61DAFB",
+    bgGradient: "from-cyan-400 to-blue-500"
+  };
+  if (name.includes('java') && !name.includes('script')) return {
+    icon: SiJava,
+    color: "#007396",
+    bgGradient: "from-orange-600 to-red-600"
+  };
+  if (name.includes('spring')) return {
+    icon: SiSpring,
+    color: "#6DB33F",
+    bgGradient: "from-green-500 to-green-600"
+  };
+  if (name.includes('three')) return {
+    icon: SiThreedotjs,
+    color: "#000000",
+    bgGradient: "from-gray-800 to-black"
+  };
+  if (name.includes('mysql')) return {
+    icon: SiMysql,
+    color: "#4479A1",
+    bgGradient: "from-blue-600 to-blue-700"
+  };
+  if (name.includes('git') || name.includes('github')) return {
+    icon: SiGit,
+    color: "#F05032",
+    bgGradient: "from-orange-500 to-red-500"
+  };
+  if (name.includes('docker')) return {
+    icon: SiDocker,
+    color: "#0db7ed",
+    bgGradient: "from-blue-400 to-blue-600"
+  };
+  if (name.includes('maven')) return {
+    icon: SiMaven,
+    color: "#C71A36",
+    bgGradient: "from-red-600 to-red-700"
+  };
+  if (name.includes('tailwind')) return {
+    icon: SiTailwindcss,
+    color: "#06B6D4",
+    bgGradient: "from-cyan-400 to-cyan-600"
+  };
+
+  // Default fallback
+  return {
+    icon: FaCode,
+    color: "#8B5CF6",
+    bgGradient: "from-purple-500 to-purple-600"
+  };
 };
 
 // Main Skill Icon 3D Component
