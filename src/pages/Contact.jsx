@@ -141,12 +141,12 @@ const Contact = () => {
 
           {showInlineToast === "success" && (
             <div className="text-green-600 bg-green-100 border border-green-300 mt-2 p-3 rounded-lg shadow-md animate-fade-in">
-              ✅ Thank you! Your message has been received (demo mode).
+              Thank you! Your message has been received (demo mode).
             </div>
           )}
           {showInlineToast === "error" && (
             <div className="text-red-600 bg-red-100 border border-red-300 mt-2 p-3 rounded-lg shadow-md animate-fade-in">
-              ❌ Something went wrong. Please try again later.
+              Something went wrong. Please try again later.
             </div>
           )}
         </div>
