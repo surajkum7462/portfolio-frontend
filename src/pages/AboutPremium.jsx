@@ -264,7 +264,7 @@ const AboutPremium = () => {
           </div>
         </motion.div>
 
-        {/* Skills Section */}
+        {/* Skills Section with 3D Icons */}
         <motion.div
           className="max-w-6xl mx-auto"
           initial={{ opacity: 0 }}
@@ -272,34 +272,11 @@ const AboutPremium = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl font-bold text-center mb-12 text-white">Technical Expertise</h2>
-          
+          <p className="text-center text-white/80 mb-12 text-lg">Hover over each skill to see interactive 3D icons</p>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {skills.map((skill, index) => (
-              <motion.div
-                key={index}
-                className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-purple-400/50 transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  backgroundColor: "rgba(255,255,255,0.1)",
-                  boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)"
-                }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-xl font-bold text-white mb-2">{skill.name}</h3>
-                <p className="text-purple-300 text-sm mb-2">{skill.category}</p>
-                <div className="flex items-center">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    skill.level === 'Expert' ? 'bg-green-600/80 text-white' :
-                    skill.level === 'Advanced' ? 'bg-blue-600/80 text-white' :
-                    'bg-yellow-600/80 text-white'
-                  }`}>
-                    {skill.level}
-                  </span>
-                </div>
-              </motion.div>
+              <SkillIcon3D key={index} skill={skill} index={index} />
             ))}
           </div>
         </motion.div>
