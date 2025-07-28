@@ -432,35 +432,49 @@ const Scene3D = ({ selectedProject, onProjectClick, onCentralClick }) => {
   return (
     <>
       <Environment preset="night" />
-      <ambientLight intensity={0.2} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#8B5CF6" />
-      <spotLight position={[0, 15, 0]} intensity={0.8} angle={0.3} penumbra={1} />
-      
-      <Stars radius={100} depth={50} count={3000} factor={4} saturation={0} fade speed={1} />
-      
+      <ambientLight intensity={0.3} />
+      <pointLight position={[10, 10, 10]} intensity={1.5} />
+      <pointLight position={[-10, -10, -10]} intensity={0.8} color="#8B5CF6" />
+      <pointLight position={[0, 0, 15]} intensity={0.6} color="#EC4899" />
+      <spotLight position={[0, 20, 0]} intensity={1} angle={0.4} penumbra={1} />
+
+      <Stars radius={150} depth={80} count={5000} factor={6} saturation={0} fade speed={2} />
+
+      {/* Advanced Particle System */}
+      <ParticleSystem />
+
+      {/* Dynamic Connection Network */}
+      <ConnectionNetwork />
+
       {/* Central Hub */}
       <CentralHub onClick={onCentralClick} />
-      
-      {/* Project Nodes with Connections */}
+
+      {/* Project Nodes */}
       {projects.map(project => (
         <ProjectNode
           key={project.id}
           project={project}
           onClick={onProjectClick}
           isSelected={selectedProject?.id === project.id}
-          connections={calculateConnections(project, projects)}
+          connections={[]}
         />
       ))}
-      
+
       {/* Education Timeline */}
       <EducationTimeline />
-      
+
       {/* Skills Constellation */}
       <SkillsConstellation />
-      
-      <ContactShadows position={[0, -15, 0]} opacity={0.4} scale={100} blur={2} />
-      <OrbitControls enableZoom={true} enablePan={true} maxDistance={50} minDistance={5} />
+
+      <ContactShadows position={[0, -20, 0]} opacity={0.6} scale={150} blur={3} />
+      <OrbitControls
+        enableZoom={true}
+        enablePan={true}
+        maxDistance={80}
+        minDistance={8}
+        autoRotate={true}
+        autoRotateSpeed={0.5}
+      />
     </>
   );
 };
