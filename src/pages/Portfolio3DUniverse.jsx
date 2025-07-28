@@ -90,26 +90,7 @@ const ProjectNode = ({ project, onClick, isSelected, connections }) => {
   });
 
   return (
-    <group position={project.position}>
-      {/* Connection Lines */}
-      {connections.map((connection, index) => (
-        <group key={index}>
-          <Cylinder
-            args={[0.01, 0.01, connection.distance]}
-            position={connection.midpoint}
-            rotation={connection.rotation}
-          >
-            <meshStandardMaterial 
-              color="#8B5CF6" 
-              transparent 
-              opacity={0.6}
-              emissive="#4C1D95"
-              emissiveIntensity={0.2}
-            />
-          </Cylinder>
-        </group>
-      ))}
-      
+    <group ref={groupRef} position={project.position}>
       {/* Project Node */}
       <Float speed={2} rotationIntensity={0.3} floatIntensity={0.5}>
         <Sphere
@@ -117,7 +98,7 @@ const ProjectNode = ({ project, onClick, isSelected, connections }) => {
           args={[1.2]}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
-          onClick={() => onClick(project)}
+          onClick={() => onClick && onClick(project)}
         >
           <meshStandardMaterial
             color={hovered || isSelected ? "#ffffff" : project.color}
@@ -127,22 +108,24 @@ const ProjectNode = ({ project, onClick, isSelected, connections }) => {
             emissiveIntensity={hovered || isSelected ? 0.6 : 0.3}
           />
         </Sphere>
-        
+
         {/* Floating particles around project */}
-        {[...Array(8)].map((_, i) => (
-          <Float key={i} speed={3 + i} rotationIntensity={0.5} floatIntensity={0.8}>
-            <Sphere 
-              args={[0.05]} 
+        {[...Array(6)].map((_, i) => (
+          <Float key={i} speed={2 + i * 0.5} rotationIntensity={0.3} floatIntensity={0.6}>
+            <Sphere
+              args={[0.05]}
               position={[
-                Math.cos((i / 8) * Math.PI * 2) * 2,
-                Math.sin((i / 8) * Math.PI * 2) * 2,
-                Math.random() * 2 - 1
+                Math.cos((i / 6) * Math.PI * 2) * 2,
+                Math.sin((i / 6) * Math.PI * 2) * 2,
+                (Math.random() - 0.5) * 2
               ]}
             >
               <meshStandardMaterial
                 color={project.color}
                 emissive={project.color}
-                emissiveIntensity={0.8}
+                emissiveIntensity={0.6}
+                transparent
+                opacity={0.8}
               />
             </Sphere>
           </Float>
@@ -151,7 +134,7 @@ const ProjectNode = ({ project, onClick, isSelected, connections }) => {
 
       {/* Text Label */}
       <Html position={[0, -2.5, 0]} center>
-        <div className="text-white font-bold text-lg text-center bg-black/50 px-3 py-1 rounded-lg backdrop-blur-sm border border-white/20">
+        <div className="text-white font-bold text-lg text-center bg-black/50 px-3 py-1 rounded-lg backdrop-blur-sm border border-white/20 pointer-events-none">
           {project.title.split(' ')[0]}
         </div>
       </Html>
