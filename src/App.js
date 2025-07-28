@@ -9,6 +9,7 @@ import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Socials from './pages/Socials';
 import Navbar from './components/Navbar';
+import NavbarPremium from './components/NavbarPremium';
 
 import 'swiper/css';
 import 'swiper/css/autoplay';
