@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Sphere, Box, Cylinder, Torus, Stars, OrbitControls, Html } from "@react-three/drei";
 import { Link } from "react-router-dom";
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 import * as THREE from "three";
 
 // 3D Social Media Icons
