@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ProjectCard3D from "../components/ProjectCard3D";
+import ProjectShowcase from "../components/ProjectShowcase";
 import Background3D from "../components/Background3D";
 
 const projects = [
