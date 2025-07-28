@@ -147,17 +147,12 @@ const ProjectNode = ({ project, onClick, isSelected, connections }) => {
         ))}
       </Float>
 
-      {/* 3D Text Label */}
-      <Text3D
-        font="/fonts/helvetiker_regular.typeface.json"
-        size={0.3}
-        height={0.05}
-        position={[0, -2, 0]}
-        castShadow
-      >
-        {project.title.split(' ')[0]}
-        <meshStandardMaterial color="#ffffff" />
-      </Text3D>
+      {/* Text Label */}
+      <Html position={[0, -2.5, 0]} center>
+        <div className="text-white font-bold text-lg text-center bg-black/50 px-3 py-1 rounded-lg backdrop-blur-sm border border-white/20">
+          {project.title.split(' ')[0]}
+        </div>
+      </Html>
     </group>
   );
 };
