@@ -1,8 +1,20 @@
-import React, { useRef, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Sphere, Box, Cylinder, Torus } from '@react-three/drei';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import * as THREE from 'three';
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiReact,
+  SiJava,
+  SiSpring,
+  SiMysql,
+  SiGit,
+  SiDocker,
+  SiMaven,
+  SiThreedotjs,
+  SiTailwindcss
+} from 'react-icons/si';
+import { FaCode } from 'react-icons/fa';
 
 // 3D Icon Components for different technologies
 const HTMLIcon = ({ isHovered }) => {
