@@ -369,90 +369,85 @@ const Social3D = () => {
             </motion.p>
           </motion.div>
 
-          {/* 3D Social Platform Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-8 sm:mb-16">
+          {/* Compact Social Platform Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 sm:mb-16">
             {socialPlatforms.map((platform, index) => (
               <motion.div
                 key={platform.name}
                 className="relative group"
-                initial={{ opacity: 0, y: 100 }}
+                initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
                 onHoverStart={() => setHoveredPlatform(platform.name)}
                 onHoverEnd={() => setHoveredPlatform(null)}
               >
-                {/* 3D Icon Container - Reduced height on mobile */}
-                <div className="h-48 sm:h-56 lg:h-64 mb-4 sm:mb-6 relative">
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    animate={{
-                      scale: hoveredPlatform === platform.name ? [1, 1.1, 1] : 1,
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: hoveredPlatform === platform.name ? Infinity : 0,
-                      ease: "easeInOut"
-                    }}
-                  />
-
-                  {/* Hide 3D icons on mobile for performance */}
-                  <div className="hidden sm:block h-full">
-                    <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
-                      <ambientLight intensity={0.4} />
-                      <pointLight position={[3, 3, 3]} intensity={1} />
-                      <pointLight position={[-3, -3, -3]} intensity={0.5} color="#8B5CF6" />
-
-                      <platform.component
-                        isHovered={hoveredPlatform === platform.name}
-                        onClick={() => handleSocialClick(platform.url)}
-                      />
-                    </Canvas>
-                  </div>
-
-                  {/* Mobile fallback with platform colors */}
-                  <div className="sm:hidden h-full flex items-center justify-center">
-                    <motion.div
-                      className="w-24 h-24 rounded-full flex items-center justify-center text-4xl"
-                      style={{ backgroundColor: platform.color }}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      {platform.name === 'GitHub' && '🐱'}
-                      {platform.name === 'LinkedIn' && '💼'}
-                      {platform.name === 'Twitter' && '🐦'}
-                      {platform.name === 'Instagram' && '📸'}
-                    </motion.div>
-                  </div>
-                </div>
-
-                {/* Platform Info */}
                 <motion.div
-                  className="bg-white/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 group-hover:border-purple-400/50 transition-all duration-300"
+                  className="bg-white/10 backdrop-blur-xl rounded-xl p-6 border border-white/20 group-hover:border-purple-400/50 transition-all duration-300 text-center h-full flex flex-col"
                   whileHover={{
-                    scale: 1.02,
+                    scale: 1.05,
                     backgroundColor: "rgba(255,255,255,0.15)",
                     boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)"
                   }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => handleSocialClick(platform.url)}
                 >
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-purple-300 transition-colors">
+                  {/* Exact Platform Icon */}
+                  <motion.div
+                    className="mb-4 flex justify-center"
+                    whileHover={{
+                      scale: 1.2,
+                      rotate: 5
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <platform.icon
+                      className="text-5xl transition-colors duration-300"
+                      style={{
+                        color: hoveredPlatform === platform.name ? '#ffffff' : platform.color
+                      }}
+                    />
+                  </motion.div>
+
+                  {/* Platform Name */}
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">
                     {platform.name}
                   </h3>
-                  <p className="text-white/80 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+
+                  {/* Short Description */}
+                  <p className="text-white/70 text-sm mb-4 flex-grow leading-relaxed">
                     {platform.description}
                   </p>
 
-                  <motion.button
-                    className="w-full py-2 sm:py-3 px-4 sm:px-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg sm:rounded-xl text-white font-semibold hover:shadow-lg transition-all duration-300 border border-white/20 backdrop-blur-sm text-sm sm:text-base"
-                    whileHover={{
-                      scale: 1.02,
-                      boxShadow: "0 0 30px rgba(147, 51, 234, 0.5)"
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => handleSocialClick(platform.url)}
+                  {/* Connect Button */}
+                  <motion.div
+                    className="mt-auto"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Visit {platform.name}
-                  </motion.button>
+                    <div
+                      className="py-2 px-4 bg-gradient-to-r from-purple-600/80 to-pink-600/80 rounded-lg text-white font-medium text-sm hover:from-purple-600 hover:to-pink-600 transition-all duration-300 border border-white/20"
+                    >
+                      Connect
+                    </div>
+                  </motion.div>
                 </motion.div>
+
+                {/* Hover Glow Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+                  style={{
+                    background: `radial-gradient(circle, ${platform.color}20 0%, transparent 70%)`,
+                    filter: 'blur(20px)'
+                  }}
+                  animate={{
+                    scale: hoveredPlatform === platform.name ? [1, 1.1, 1] : 1,
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: hoveredPlatform === platform.name ? Infinity : 0,
+                    ease: "easeInOut"
+                  }}
+                />
               </motion.div>
             ))}
           </div>
