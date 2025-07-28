@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
+import HomePremium from './pages/HomePremium';
 import About from './pages/About';
 import Projects from './pages/Projects';
+import ProjectsPremium from './pages/ProjectsPremium';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Socials from './pages/Socials';
