@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Float, Sphere, Box, Cylinder, Torus, Stars, OrbitControls } from "@react-three/drei";
+import { Link } from "react-router-dom";
 import * as THREE from "three";
 
 // 3D Form Elements
