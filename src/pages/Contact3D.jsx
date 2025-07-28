@@ -370,7 +370,7 @@ const Contact3D = () => {
 
           {/* Contact Info */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
@@ -382,9 +382,9 @@ const Contact3D = () => {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className="text-center bg-white/5 backdrop-blur-lg rounded-2xl p-6 border border-white/10"
-                whileHover={{ 
-                  scale: 1.05,
+                className="text-center bg-white/5 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/10"
+                whileHover={{
+                  scale: 1.02,
                   backgroundColor: "rgba(255,255,255,0.1)",
                   boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)"
                 }}
@@ -392,9 +392,9 @@ const Contact3D = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 + index * 0.1 }}
               >
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="text-white font-bold mb-2">{item.title}</h3>
-                <p className="text-white/80">{item.value}</p>
+                <div className="text-2xl sm:text-3xl mb-2 sm:mb-3">{item.icon}</div>
+                <h3 className="text-white font-bold mb-1 sm:mb-2 text-sm sm:text-base">{item.title}</h3>
+                <p className="text-white/80 text-xs sm:text-sm break-words">{item.value}</p>
               </motion.div>
             ))}
           </motion.div>
