@@ -242,29 +242,33 @@ const Social3D = () => {
     {
       name: "GitHub",
       url: "https://github.com/surajkum7462",
-      description: "Check out my repositories and open source contributions",
+      description: "Open source repositories and code contributions",
       component: GitHubIcon3D,
+      icon: FaGithub,
       color: "#333333"
     },
     {
       name: "LinkedIn",
       url: "https://linkedin.com/in/surajkumar",
-      description: "Connect with me professionally and view my career journey",
+      description: "Professional network and career updates",
       component: LinkedInIcon3D,
+      icon: FaLinkedin,
       color: "#0077B5"
     },
     {
       name: "Twitter",
       url: "https://twitter.com/surajkumar",
-      description: "Follow my thoughts on tech and development trends",
+      description: "Tech insights and development thoughts",
       component: TwitterIcon3D,
+      icon: FaTwitter,
       color: "#1DA1F2"
     },
     {
       name: "Instagram",
       url: "https://instagram.com/surajkumar",
-      description: "Behind the scenes of my coding journey and life",
+      description: "Behind the scenes coding journey",
       component: InstagramIcon3D,
+      icon: FaInstagram,
       color: "#E4405F"
     }
   ];
