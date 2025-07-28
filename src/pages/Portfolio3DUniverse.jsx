@@ -199,16 +199,11 @@ const CentralHub = ({ onClick }) => {
       </Float>
 
       {/* Name Text */}
-      <Text3D
-        font="/fonts/helvetiker_regular.typeface.json"
-        size={0.5}
-        height={0.1}
-        position={[0, -3.5, 0]}
-        castShadow
-      >
-        SURAJ KUMAR
-        <meshStandardMaterial color="#ffffff" />
-      </Text3D>
+      <Html position={[0, -4, 0]} center>
+        <div className="text-white font-bold text-2xl text-center bg-black/50 px-6 py-2 rounded-xl backdrop-blur-sm border border-white/20">
+          SURAJ KUMAR
+        </div>
+      </Html>
     </group>
   );
 };
