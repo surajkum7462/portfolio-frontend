@@ -457,34 +457,35 @@ const Social3D = () => {
             className="text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
+            transition={{ delay: 1 }}
           >
             <motion.div
-              className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10"
-              whileHover={{ 
+              className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-white/10"
+              whileHover={{
                 scale: 1.02,
                 backgroundColor: "rgba(255,255,255,0.1)"
               }}
             >
-              <h2 className="text-3xl font-bold text-white mb-4">Let's Stay Connected!</h2>
-              <p className="text-white/80 mb-6 text-lg">
-                Follow my journey, contribute to my projects, or just say hello on any of these platforms
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">Let's Stay Connected!</h2>
+              <p className="text-white/80 mb-6 text-base sm:text-lg px-4">
+                Follow my journey, contribute to my projects, or just say hello
               </p>
-              
-              <div className="flex flex-wrap justify-center gap-4">
+
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
                 {socialPlatforms.map((platform, index) => (
                   <motion.a
                     key={platform.name}
                     href={platform.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 bg-white/10 border border-white/20 rounded-xl text-white font-medium hover:bg-white/20 transition-all duration-300"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white font-medium hover:bg-white/20 transition-all duration-300 text-sm"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 2 + index * 0.1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.2 + index * 0.1 }}
                   >
+                    <platform.icon className="text-lg" style={{ color: platform.color }} />
                     {platform.name}
                   </motion.a>
                 ))}
