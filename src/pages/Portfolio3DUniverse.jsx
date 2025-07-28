@@ -503,11 +503,16 @@ const calculateConnections = (project, allProjects) => {
 const Scene3D = ({ selectedProject, onProjectClick, onCentralClick }) => {
   return (
     <>
-      <Environment preset="sunset" />
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <pointLight position={[-10, -10, -10]} intensity={0.6} color="#8B5CF6" />
-      <spotLight position={[0, 15, 0]} intensity={0.8} angle={0.3} penumbra={1} />
+      {/* Lighting Setup */}
+      <ambientLight intensity={0.3} />
+      <directionalLight position={[10, 10, 5]} intensity={1} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#8B5CF6" />
+      <pointLight position={[0, 0, 15]} intensity={0.4} color="#EC4899" />
+      <spotLight position={[0, 15, 0]} intensity={0.6} angle={0.3} penumbra={1} />
+
+      {/* Background Color */}
+      <color attach="background" args={['#0a0a0a']} />
 
       <Stars radius={120} depth={60} count={3000} factor={4} saturation={0} fade speed={1} />
 
