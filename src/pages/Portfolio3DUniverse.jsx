@@ -224,15 +224,11 @@ const EducationTimeline = () => {
             </Box>
           </Float>
           
-          <Text3D
-            font="/fonts/helvetiker_regular.typeface.json"
-            size={0.2}
-            height={0.02}
-            position={[0, -1, 0]}
-          >
-            {edu.year}
-            <meshStandardMaterial color="#ffffff" />
-          </Text3D>
+          <Html position={[0, -1.5, 0]} center>
+            <div className="text-white font-semibold text-sm text-center bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/20">
+              {edu.year}
+            </div>
+          </Html>
         </group>
       ))}
       
