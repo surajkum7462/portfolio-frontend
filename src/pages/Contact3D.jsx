@@ -209,25 +209,25 @@ const Contact3D = () => {
       />
 
       {/* Main Content */}
-      <div className="relative z-20 min-h-screen flex items-center justify-center p-6">
+      <div className="relative z-20 min-h-screen flex items-center justify-center p-4 sm:p-6 pt-20">
         <div className="max-w-4xl w-full">
-          
+
           {/* Header */}
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <motion.h1 
-              className="text-6xl md:text-8xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400"
+            <motion.h1
+              className="text-4xl sm:text-6xl md:text-8xl font-black mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400"
               whileHover={{ scale: 1.02 }}
             >
               Let's Connect
             </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed"
+
+            <motion.p
+              className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed px-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
@@ -236,9 +236,9 @@ const Contact3D = () => {
             </motion.p>
           </motion.div>
 
-          {/* 3D Email Icon */}
+          {/* 3D Email Icon - Hidden on mobile for performance */}
           <motion.div
-            className="h-32 mb-8"
+            className="h-32 mb-8 hidden sm:block"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
@@ -247,7 +247,7 @@ const Contact3D = () => {
               <ambientLight intensity={0.4} />
               <pointLight position={[3, 3, 3]} intensity={1} />
               <pointLight position={[-3, -3, -3]} intensity={0.5} color="#8B5CF6" />
-              
+
               <EmailIcon3D isHovered={false} />
             </Canvas>
           </motion.div>
