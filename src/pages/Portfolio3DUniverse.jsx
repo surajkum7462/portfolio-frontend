@@ -171,17 +171,19 @@ const CentralHub = ({ onClick }) => {
           args={[2, 0.5, 16, 32]}
           onPointerOver={() => setHovered(true)}
           onPointerOut={() => setHovered(false)}
-          onClick={onClick}
+          onClick={() => onClick && onClick()}
         >
           <meshStandardMaterial
             color={hovered ? "#ffffff" : "#8B5CF6"}
             emissive="#4C1D95"
             emissiveIntensity={0.4}
+            transparent
+            opacity={0.9}
           />
         </Torus>
-        
+
         {/* Inner Core */}
-        <Sphere args={[1]} position={[0, 0, 0]}>
+        <Sphere ref={coreRef} args={[1]} position={[0, 0, 0]}>
           <meshStandardMaterial
             color="#EC4899"
             emissive="#EC4899"
@@ -194,7 +196,7 @@ const CentralHub = ({ onClick }) => {
 
       {/* Name Text */}
       <Html position={[0, -4, 0]} center>
-        <div className="text-white font-bold text-2xl text-center bg-black/50 px-6 py-2 rounded-xl backdrop-blur-sm border border-white/20">
+        <div className="text-white font-bold text-2xl text-center bg-black/50 px-6 py-2 rounded-xl backdrop-blur-sm border border-white/20 pointer-events-none">
           SURAJ KUMAR
         </div>
       </Html>
