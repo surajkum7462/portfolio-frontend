@@ -271,15 +271,11 @@ const SkillsConstellation = () => {
             </Sphere>
           </Float>
           
-          <Text3D
-            font="/fonts/helvetiker_regular.typeface.json"
-            size={0.15}
-            height={0.02}
-            position={[0, -1.2, 0]}
-          >
-            {skill}
-            <meshStandardMaterial color="#ffffff" />
-          </Text3D>
+          <Html position={[0, -1.2, 0]} center>
+            <div className="text-white font-medium text-xs text-center bg-black/50 px-2 py-1 rounded backdrop-blur-sm border border-white/20">
+              {skill}
+            </div>
+          </Html>
         </group>
       ))}
     </group>
