@@ -342,14 +342,6 @@ const ParticleSystem = () => {
 
 // Dynamic Connection Lines
 const ConnectionNetwork = () => {
-  const linesRef = useRef();
-
-  useFrame((state) => {
-    if (linesRef.current) {
-      linesRef.current.material.opacity = 0.3 + Math.sin(state.clock.elapsedTime) * 0.2;
-    }
-  });
-
   const connections = React.useMemo(() => {
     const lines = [];
     const centerPosition = [0, 0, 0];
@@ -378,7 +370,7 @@ const ConnectionNetwork = () => {
   }, []);
 
   return (
-    <group ref={linesRef}>
+    <group>
       {connections.map((connection, index) => {
         const start = new THREE.Vector3(...connection.start);
         const end = new THREE.Vector3(...connection.end);
@@ -391,23 +383,44 @@ const ConnectionNetwork = () => {
         );
 
         return (
-          <Cylinder
+          <ConnectionLine
             key={index}
-            args={[0.01, 0.01, distance]}
+            distance={distance}
             position={midpoint.toArray()}
             quaternion={quaternion.toArray()}
-          >
-            <meshStandardMaterial
-              color={connection.color}
-              transparent
-              opacity={0.4}
-              emissive={connection.color}
-              emissiveIntensity={0.1}
-            />
-          </Cylinder>
+            color={connection.color}
+          />
         );
       })}
     </group>
+  );
+};
+
+// Individual Connection Line Component
+const ConnectionLine = ({ distance, position, quaternion, color }) => {
+  const materialRef = useRef();
+
+  useFrame((state) => {
+    if (materialRef.current) {
+      materialRef.current.opacity = 0.3 + Math.sin(state.clock.elapsedTime + position[0]) * 0.2;
+    }
+  });
+
+  return (
+    <Cylinder
+      args={[0.01, 0.01, distance]}
+      position={position}
+      quaternion={quaternion}
+    >
+      <meshStandardMaterial
+        ref={materialRef}
+        color={color}
+        transparent
+        opacity={0.4}
+        emissive={color}
+        emissiveIntensity={0.1}
+      />
+    </Cylinder>
   );
 };
 
