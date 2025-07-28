@@ -291,14 +291,14 @@ const Contact3D = () => {
                   whileHover={{ scale: 1.02 }}
                   whileFocus={{ scale: 1.02 }}
                 >
-                  <label className="block text-white font-bold text-lg mb-3">
+                  <label className="block text-white font-bold text-base sm:text-lg mb-2 sm:mb-3">
                     Email Address
                   </label>
                   <input
                     type="email"
                     name="email"
                     required
-                    className="w-full p-4 rounded-xl bg-white/5 border border-white/20 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/50 text-white placeholder-white/50 backdrop-blur-sm transition-all duration-300"
+                    className="w-full p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/20 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/50 text-white placeholder-white/50 backdrop-blur-sm transition-all duration-300 text-sm sm:text-base"
                     placeholder="your@email.com"
                     value={formData.email}
                     onChange={handleChange}
