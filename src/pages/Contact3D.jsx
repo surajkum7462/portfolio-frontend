@@ -308,18 +308,18 @@ const Contact3D = () => {
 
               {/* Message Field */}
               <motion.div
-                className="mb-8"
+                className="mb-6 sm:mb-8"
                 whileHover={{ scale: 1.01 }}
                 whileFocus={{ scale: 1.01 }}
               >
-                <label className="block text-white font-bold text-lg mb-3">
+                <label className="block text-white font-bold text-base sm:text-lg mb-2 sm:mb-3">
                   Your Message
                 </label>
                 <textarea
                   name="message"
-                  rows="6"
+                  rows="5"
                   required
-                  className="w-full p-4 rounded-xl bg-white/5 border border-white/20 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/50 text-white placeholder-white/50 backdrop-blur-sm transition-all duration-300 resize-none"
+                  className="w-full p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 border border-white/20 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400/50 text-white placeholder-white/50 backdrop-blur-sm transition-all duration-300 resize-none text-sm sm:text-base"
                   placeholder="Tell me about your project, ideas, or just say hello..."
                   value={formData.message}
                   onChange={handleChange}
@@ -331,7 +331,7 @@ const Contact3D = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`px-12 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
+                  className={`w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-4 rounded-lg sm:rounded-xl font-bold text-base sm:text-lg transition-all duration-300 ${
                     isSubmitting
                       ? "bg-purple-600/50 cursor-not-allowed"
                       : "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-lg hover:shadow-xl"
