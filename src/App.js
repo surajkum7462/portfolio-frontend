@@ -71,13 +71,15 @@ function App() {
             <Blog />
           </div>
         } />
-        <Route path="/contact" element={
+        <Route path="/contact" element={<Contact3D />} />
+        <Route path="/contact-classic" element={
           <div className="pt-16">
             <NavbarPremium />
             <Contact />
           </div>
         } />
-        <Route path="/socials" element={
+        <Route path="/socials" element={<Social3D />} />
+        <Route path="/socials-classic" element={
           <div className="pt-16">
             <NavbarPremium />
             <Socials />
