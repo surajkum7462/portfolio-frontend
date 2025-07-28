@@ -1,19 +1,16 @@
 import React, { useRef, useState, useEffect, Suspense } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { 
-  Float, 
-  Text3D, 
-  OrbitControls, 
-  Stars, 
-  Sphere, 
-  Box, 
+import {
+  Float,
+  Text,
+  OrbitControls,
+  Stars,
+  Sphere,
+  Box,
   Cylinder,
   Torus,
-  useTexture,
   Html,
   Environment,
-  Effects,
-  Lightformer,
   ContactShadows
 } from '@react-three/drei';
 import { motion, AnimatePresence } from 'framer-motion';
