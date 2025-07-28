@@ -152,28 +152,12 @@ const ProjectsPremium = () => {
           </motion.div>
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Enhanced Projects Showcase */}
         <motion.div
           className="max-w-7xl mx-auto"
           layout
         >
-          <motion.div 
-            className="grid gap-8 md:grid-cols-2 xl:grid-cols-3"
-            layout
-          >
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                layout
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <ProjectCard3D project={project} index={index} />
-              </motion.div>
-            ))}
-          </motion.div>
+          <ProjectShowcase projects={filteredProjects} />
         </motion.div>
 
         {/* Stats Section */}
