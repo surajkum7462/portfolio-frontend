@@ -9,6 +9,7 @@ import ProjectsPremium from './pages/ProjectsPremium';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Socials from './pages/Socials';
+import Portfolio3DUniverse from './pages/Portfolio3DUniverse';
 import Navbar from './components/Navbar';
 import NavbarPremium from './components/NavbarPremium';
 
