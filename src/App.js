@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <div className="pt-16">
-        <Navbar />
+        <NavbarPremium />
         <Routes>
           <Route path="/" element={<HomePremium />} />
           <Route path="/home-classic" element={<Home />} />
