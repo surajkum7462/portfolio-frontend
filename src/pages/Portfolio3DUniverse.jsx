@@ -194,6 +194,42 @@ const CentralHub = ({ onClick }) => {
         </Sphere>
       </Float>
 
+      {/* Profile Photo */}
+      <Html position={[0, 0, 0]} center>
+        <div className="relative pointer-events-none">
+          <motion.img
+            src="/images/best photo.jpg"
+            alt="Suraj Kumar"
+            className="w-32 h-32 rounded-full border-4 border-white/40 shadow-2xl object-cover backdrop-blur-sm"
+            style={{
+              filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.6))'
+            }}
+            animate={{
+              scale: [1, 1.05, 1],
+              boxShadow: [
+                '0 0 20px rgba(139, 92, 246, 0.6)',
+                '0 0 30px rgba(236, 72, 153, 0.8)',
+                '0 0 20px rgba(139, 92, 246, 0.6)'
+              ]
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+
+          {/* Glowing ring around photo */}
+          <div
+            className="absolute inset-0 rounded-full border-2 border-purple-400/60 animate-pulse"
+            style={{
+              transform: 'scale(1.1)',
+              filter: 'blur(1px)'
+            }}
+          />
+        </div>
+      </Html>
+
       {/* Name Text */}
       <Html position={[0, -4, 0]} center>
         <div className="text-white font-bold text-2xl text-center bg-black/50 px-6 py-2 rounded-xl backdrop-blur-sm border border-white/20 pointer-events-none">
