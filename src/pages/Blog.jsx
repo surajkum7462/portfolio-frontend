@@ -1,15 +1,71 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
+
+// Mock blog data since backend is not available
+const mockBlogs = [
+  {
+    id: 1,
+    title: "Building Scalable Web Applications with React and Spring Boot",
+    summary: "Exploring best practices for creating full-stack applications with modern technologies, focusing on performance and scalability.",
+    createdAt: "2024-01-15",
+    tags: ["React", "Spring Boot", "Full Stack"]
+  },
+  {
+    id: 2,
+    title: "Mastering Data Structures and Algorithms",
+    summary: "Deep dive into essential DSA concepts including trees, graphs, and dynamic programming with practical examples.",
+    createdAt: "2024-01-10",
+    tags: ["DSA", "Algorithms", "Problem Solving"]
+  },
+  {
+    id: 3,
+    title: "3D Web Development with Three.js and React",
+    summary: "Creating immersive 3D experiences on the web using Three.js, React Three Fiber, and modern animation techniques.",
+    createdAt: "2024-01-05",
+    tags: ["Three.js", "3D", "WebGL"]
+  },
+  {
+    id: 4,
+    title: "Optimizing React Performance for Better User Experience",
+    summary: "Advanced techniques for React optimization including memo, useMemo, useCallback, and code splitting strategies.",
+    createdAt: "2023-12-20",
+    tags: ["React", "Performance", "Optimization"]
+  },
+  {
+    id: 5,
+    title: "Building RESTful APIs with Spring Boot",
+    summary: "Complete guide to creating robust and secure REST APIs using Spring Boot with JWT authentication and validation.",
+    createdAt: "2023-12-15",
+    tags: ["Spring Boot", "REST API", "Backend"]
+  },
+  {
+    id: 6,
+    title: "Modern CSS Techniques: From Flexbox to Grid",
+    summary: "Mastering modern CSS layout techniques including Flexbox, Grid, and advanced animations for responsive design.",
+    createdAt: "2023-12-10",
+    tags: ["CSS", "Frontend", "Responsive Design"]
+  }
+];
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/blogs") // replace with deployed API if needed
-      .then((res) => setBlogs(res.data))
-      .catch((err) => console.error("Failed to fetch blogs:", err));
+    // Simulate API call with mock data
+    const loadBlogs = async () => {
+      try {
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 500));
+        setBlogs(mockBlogs);
+      } catch (err) {
+        console.error("Failed to fetch blogs:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadBlogs();
   }, []);
 
   return (
