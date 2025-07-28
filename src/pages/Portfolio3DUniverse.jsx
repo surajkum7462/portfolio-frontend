@@ -700,33 +700,81 @@ const Portfolio3DUniverse = () => {
         </Suspense>
       </Canvas>
 
-      {/* UI Instructions */}
+      {/* Enhanced UI Header */}
       <div className="absolute top-6 left-6 text-white z-40">
-        <h1 className="text-2xl font-bold mb-2">Suraj Kumar's Universe</h1>
-        <p className="text-white/80">Click on nodes to explore • Drag to orbit • Scroll to zoom</p>
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1 }}
+        >
+          <h1 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+            Suraj Kumar's 3D Universe
+          </h1>
+          <div className="space-y-1 text-sm text-white/80">
+            <p>🖱️ Click nodes to explore details</p>
+            <p>🖐️ Drag to orbit around universe</p>
+            <p>🔍 Scroll to zoom in/out</p>
+            <p>⚡ Auto-rotation enabled</p>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Legend */}
-      <div className="absolute bottom-6 right-6 bg-white/10 backdrop-blur-lg rounded-2xl p-4 text-white z-40">
-        <h3 className="font-bold mb-2">Legend</h3>
-        <div className="space-y-1 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-            <span>Projects</span>
+      {/* Enhanced Legend */}
+      <div className="absolute bottom-6 right-6 bg-white/10 backdrop-blur-xl rounded-2xl p-6 text-white z-40 border border-white/20">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1.2 }}
+        >
+          <h3 className="font-bold mb-4 text-lg">Universe Map</h3>
+          <div className="space-y-3 text-sm">
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 shadow-lg"></div>
+              <span>Projects (4 nodes)</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 shadow-lg"></div>
+              <span>Education Timeline</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-r from-green-500 to-green-600 shadow-lg"></div>
+              <span>Skills Constellation</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-r from-pink-500 to-pink-600 shadow-lg"></div>
+              <span>Central Hub (Profile)</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <span>Education</span>
+
+          <div className="mt-4 pt-4 border-t border-white/20">
+            <p className="text-xs text-white/60">
+              Connected universe showcasing full-stack development journey
+            </p>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            <span>Skills</span>
+        </motion.div>
+      </div>
+
+      {/* Navigation Shortcuts */}
+      <div className="absolute top-6 right-6 text-white z-40">
+        <motion.div
+          className="bg-white/10 backdrop-blur-xl rounded-2xl p-4 border border-white/20"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5 }}
+        >
+          <h3 className="font-bold mb-2">Quick Access</h3>
+          <div className="space-y-2 text-sm">
+            <a href="/classic" className="block hover:text-purple-300 transition-colors">
+              📄 Classic Portfolio
+            </a>
+            <a href="/contact" className="block hover:text-purple-300 transition-colors">
+              📧 Contact Form
+            </a>
+            <a href="/blog" className="block hover:text-purple-300 transition-colors">
+              📝 Tech Blog
+            </a>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-pink-500"></div>
-            <span>Central Hub</span>
-          </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Overlays */}
