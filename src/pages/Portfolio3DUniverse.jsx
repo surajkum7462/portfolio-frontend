@@ -444,14 +444,13 @@ const calculateConnections = (project, allProjects) => {
 const Scene3D = ({ selectedProject, onProjectClick, onCentralClick }) => {
   return (
     <>
-      <Environment preset="night" />
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={1.5} />
-      <pointLight position={[-10, -10, -10]} intensity={0.8} color="#8B5CF6" />
-      <pointLight position={[0, 0, 15]} intensity={0.6} color="#EC4899" />
-      <spotLight position={[0, 20, 0]} intensity={1} angle={0.4} penumbra={1} />
+      <Environment preset="sunset" />
+      <ambientLight intensity={0.4} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
+      <pointLight position={[-10, -10, -10]} intensity={0.6} color="#8B5CF6" />
+      <spotLight position={[0, 15, 0]} intensity={0.8} angle={0.3} penumbra={1} />
 
-      <Stars radius={150} depth={80} count={5000} factor={6} saturation={0} fade speed={2} />
+      <Stars radius={120} depth={60} count={3000} factor={4} saturation={0} fade speed={1} />
 
       {/* Advanced Particle System */}
       <ParticleSystem />
@@ -479,14 +478,14 @@ const Scene3D = ({ selectedProject, onProjectClick, onCentralClick }) => {
       {/* Skills Constellation */}
       <SkillsConstellation />
 
-      <ContactShadows position={[0, -20, 0]} opacity={0.6} scale={150} blur={3} />
+      <ContactShadows position={[0, -15, 0]} opacity={0.4} scale={100} blur={2} />
       <OrbitControls
         enableZoom={true}
         enablePan={true}
-        maxDistance={80}
-        minDistance={8}
+        maxDistance={60}
+        minDistance={10}
         autoRotate={true}
-        autoRotateSpeed={0.5}
+        autoRotateSpeed={0.3}
       />
     </>
   );
