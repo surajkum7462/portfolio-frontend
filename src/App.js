@@ -25,20 +25,63 @@ function App() {
 
   return (
     <Router>
-      <div className="pt-16">
-        <NavbarPremium />
-        <Routes>
-          <Route path="/" element={<HomePremium />} />
-          <Route path="/home-classic" element={<Home />} />
-          <Route path="/about" element={<AboutPremium />} />
-          <Route path="/about-classic" element={<About />} />
-          <Route path="/projects" element={<ProjectsPremium />} />
-          <Route path="/projects-classic" element={<Projects />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/socials" element={<Socials />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Portfolio3DUniverse />} />
+        <Route path="/classic" element={
+          <div className="pt-16">
+            <NavbarPremium />
+            <HomePremium />
+          </div>
+        } />
+        <Route path="/home-classic" element={
+          <div className="pt-16">
+            <Navbar />
+            <Home />
+          </div>
+        } />
+        <Route path="/about" element={
+          <div className="pt-16">
+            <NavbarPremium />
+            <AboutPremium />
+          </div>
+        } />
+        <Route path="/about-classic" element={
+          <div className="pt-16">
+            <Navbar />
+            <About />
+          </div>
+        } />
+        <Route path="/projects" element={
+          <div className="pt-16">
+            <NavbarPremium />
+            <ProjectsPremium />
+          </div>
+        } />
+        <Route path="/projects-classic" element={
+          <div className="pt-16">
+            <Navbar />
+            <Projects />
+          </div>
+        } />
+        <Route path="/blog" element={
+          <div className="pt-16">
+            <NavbarPremium />
+            <Blog />
+          </div>
+        } />
+        <Route path="/contact" element={
+          <div className="pt-16">
+            <NavbarPremium />
+            <Contact />
+          </div>
+        } />
+        <Route path="/socials" element={
+          <div className="pt-16">
+            <NavbarPremium />
+            <Socials />
+          </div>
+        } />
+      </Routes>
     </Router>
   );
 }
