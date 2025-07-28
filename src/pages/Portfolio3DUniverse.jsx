@@ -194,41 +194,64 @@ const CentralHub = ({ onClick }) => {
         </Sphere>
       </Float>
 
-      {/* Profile Photo */}
-      <Html position={[0, 0, 0]} center>
-        <div className="relative pointer-events-none">
-          <motion.img
-            src="/images/best photo.jpg"
-            alt="Suraj Kumar"
-            className="w-32 h-32 rounded-full border-4 border-white/40 shadow-2xl object-cover backdrop-blur-sm"
-            style={{
-              filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.6))'
-            }}
-            animate={{
-              scale: [1, 1.05, 1],
-              boxShadow: [
-                '0 0 20px rgba(139, 92, 246, 0.6)',
-                '0 0 30px rgba(236, 72, 153, 0.8)',
-                '0 0 20px rgba(139, 92, 246, 0.6)'
-              ]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+      {/* Profile Photo - Floating in Center */}
+      <Float speed={0.5} rotationIntensity={0.1} floatIntensity={0.2}>
+        <Html position={[0, 0, 0]} center transform>
+          <motion.div
+            className="relative pointer-events-none"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <motion.img
+              src="/images/best photo.jpg"
+              alt="Suraj Kumar"
+              className="w-36 h-36 rounded-full border-4 border-white/50 shadow-2xl object-cover"
+              style={{
+                filter: 'drop-shadow(0 0 25px rgba(139, 92, 246, 0.8))',
+                background: 'linear-gradient(45deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3))',
+                padding: '2px'
+              }}
+              animate={{
+                scale: [1, 1.08, 1],
+                rotate: [0, 2, -2, 0],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
 
-          {/* Glowing ring around photo */}
-          <div
-            className="absolute inset-0 rounded-full border-2 border-purple-400/60 animate-pulse"
-            style={{
-              transform: 'scale(1.1)',
-              filter: 'blur(1px)'
-            }}
-          />
-        </div>
-      </Html>
+            {/* Animated rings around photo */}
+            <motion.div
+              className="absolute inset-0 rounded-full border-2 border-purple-400/60"
+              style={{ transform: 'scale(1.15)' }}
+              animate={{
+                rotate: 360,
+                opacity: [0.6, 1, 0.6]
+              }}
+              transition={{
+                rotate: { duration: 8, repeat: Infinity, ease: "linear" },
+                opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+              }}
+            />
+
+            <motion.div
+              className="absolute inset-0 rounded-full border border-pink-400/40"
+              style={{ transform: 'scale(1.25)' }}
+              animate={{
+                rotate: -360,
+                opacity: [0.4, 0.8, 0.4]
+              }}
+              transition={{
+                rotate: { duration: 12, repeat: Infinity, ease: "linear" },
+                opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              }}
+            />
+          </motion.div>
+        </Html>
+      </Float>
 
       {/* Name Text */}
       <Html position={[0, -4, 0]} center>
