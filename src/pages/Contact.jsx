@@ -22,11 +22,14 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setShowInlineToast(null);
+
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/contact",
-        formData
-      );
+      // Simulate form submission since backend is not available
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Log form data for demonstration (in real app, this would be sent to backend)
+      console.log("Contact form submission:", formData);
+
       setFormData({ name: "", email: "", message: "" });
       setShowInlineToast("success");
     } catch (error) {
@@ -71,7 +74,7 @@ const Contact = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Let's Connect 🤝
+Let's Connect
       </motion.h2>
 
       <motion.form
@@ -133,17 +136,17 @@ const Contact = () => {
                 : "bg-gradient-to-r from-pink-400 to-yellow-500 hover:from-pink-300 hover:to-yellow-400"
             }`}
           >
-            {isSubmitting ? "⏳ Please wait..." : "✉️ Send Message"}
+{isSubmitting ? "Please wait..." : "Send Message"}
           </button>
 
           {showInlineToast === "success" && (
             <div className="text-green-600 bg-green-100 border border-green-300 mt-2 p-3 rounded-lg shadow-md animate-fade-in">
-              ✅ Your message has been sent!
+              Thank you! Your message has been received (demo mode).
             </div>
           )}
           {showInlineToast === "error" && (
             <div className="text-red-600 bg-red-100 border border-red-300 mt-2 p-3 rounded-lg shadow-md animate-fade-in">
-              ❌ Failed to send message. Please try again.
+              Something went wrong. Please try again later.
             </div>
           )}
         </div>
