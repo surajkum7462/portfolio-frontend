@@ -376,10 +376,10 @@ const Social3D = () => {
                 onHoverStart={() => setHoveredPlatform(platform.name)}
                 onHoverEnd={() => setHoveredPlatform(null)}
               >
-                {/* 3D Icon Container */}
-                <div className="h-64 mb-6 relative">
+                {/* 3D Icon Container - Reduced height on mobile */}
+                <div className="h-48 sm:h-56 lg:h-64 mb-4 sm:mb-6 relative">
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     animate={{
                       scale: hoveredPlatform === platform.name ? [1, 1.1, 1] : 1,
                     }}
@@ -389,38 +389,56 @@ const Social3D = () => {
                       ease: "easeInOut"
                     }}
                   />
-                  
-                  <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
-                    <ambientLight intensity={0.4} />
-                    <pointLight position={[3, 3, 3]} intensity={1} />
-                    <pointLight position={[-3, -3, -3]} intensity={0.5} color="#8B5CF6" />
-                    
-                    <platform.component 
-                      isHovered={hoveredPlatform === platform.name}
-                      onClick={() => handleSocialClick(platform.url)}
-                    />
-                  </Canvas>
+
+                  {/* Hide 3D icons on mobile for performance */}
+                  <div className="hidden sm:block h-full">
+                    <Canvas camera={{ position: [0, 0, 6], fov: 50 }}>
+                      <ambientLight intensity={0.4} />
+                      <pointLight position={[3, 3, 3]} intensity={1} />
+                      <pointLight position={[-3, -3, -3]} intensity={0.5} color="#8B5CF6" />
+
+                      <platform.component
+                        isHovered={hoveredPlatform === platform.name}
+                        onClick={() => handleSocialClick(platform.url)}
+                      />
+                    </Canvas>
+                  </div>
+
+                  {/* Mobile fallback with platform colors */}
+                  <div className="sm:hidden h-full flex items-center justify-center">
+                    <motion.div
+                      className="w-24 h-24 rounded-full flex items-center justify-center text-4xl"
+                      style={{ backgroundColor: platform.color }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      {platform.name === 'GitHub' && '🐱'}
+                      {platform.name === 'LinkedIn' && '💼'}
+                      {platform.name === 'Twitter' && '🐦'}
+                      {platform.name === 'Instagram' && '📸'}
+                    </motion.div>
+                  </div>
                 </div>
 
                 {/* Platform Info */}
                 <motion.div
-                  className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 group-hover:border-purple-400/50 transition-all duration-300"
-                  whileHover={{ 
+                  className="bg-white/10 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 group-hover:border-purple-400/50 transition-all duration-300"
+                  whileHover={{
                     scale: 1.02,
                     backgroundColor: "rgba(255,255,255,0.15)",
                     boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)"
                   }}
                 >
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-purple-300 transition-colors">
                     {platform.name}
                   </h3>
-                  <p className="text-white/80 mb-6 leading-relaxed">
+                  <p className="text-white/80 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                     {platform.description}
                   </p>
-                  
+
                   <motion.button
-                    className="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white font-semibold hover:shadow-lg transition-all duration-300 border border-white/20 backdrop-blur-sm"
-                    whileHover={{ 
+                    className="w-full py-2 sm:py-3 px-4 sm:px-6 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg sm:rounded-xl text-white font-semibold hover:shadow-lg transition-all duration-300 border border-white/20 backdrop-blur-sm text-sm sm:text-base"
+                    whileHover={{
                       scale: 1.02,
                       boxShadow: "0 0 30px rgba(147, 51, 234, 0.5)"
                     }}
